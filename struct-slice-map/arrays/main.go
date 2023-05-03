@@ -9,4 +9,7 @@ func main() {
 	a[1] = "World"
 	fmt.Println(a[0], a[1])
 	fmt.Println(a)
+
+	var b [2]int = [2]int{1, 2}
+	fmt.Print(b)
 }

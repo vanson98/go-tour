@@ -59,4 +59,15 @@ func main() {
 	q = q[3:]
 	fmt.Println(q)
 
+	fmt.Println("=========== Creating a slice with make ===========")
+
+	// Slice can be created with built-in make function
+	// The make function allocates a zeroed array and returns a slice that refers to that array
+
+	//a1 := make([]int, 5)  // len(a) = 0
+
+	b1 := make([]int, 5, 10) // len(b) = 5, cap(b) = 10
+
+	fmt.Printf("%s leng=%d cap=%d %v\n", b1, len(b1), cap(b1), b1)
+
 }

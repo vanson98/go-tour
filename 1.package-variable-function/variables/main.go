@@ -6,6 +6,7 @@ import "fmt"
 var c, python, java bool
 
 // implicit variable
+// must assign value for variable
 var name = "Nguyen "
 
 // variable with initializers

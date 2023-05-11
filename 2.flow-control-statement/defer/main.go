@@ -8,9 +8,8 @@ func main() {
 
 	fmt.Println("hello")
 
-	// deferred calls are executed in last in first out order
+	// deferred calls are executed in last in first out order (stack)
 	for i := 0; i < 100; i++ {
 		defer fmt.Println(i)
 	}
-
 }

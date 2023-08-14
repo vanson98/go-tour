@@ -1,6 +1,6 @@
 package main
 
-// ======================== Select statement ===================
+// ========================  RANDOM Select statement ===================
 
 // Go program to illustrate the
 // concept of select statement
@@ -42,6 +42,10 @@ func main() {
 	}
 }
 
+// =========================================== DEMO SELECT 2=========================================
+// The select statement lets a goroutine wait on multiple communication operations.
+// A select blocks until one of its cases can run, then it executes that case. It chooses one at random if multiple are ready.
+
 // import "fmt"
 
 // func fibonacci(c, quit chan int) {
@@ -69,9 +73,7 @@ func main() {
 // 	fibonacci(c, quit)
 // }
 
-// Go program to illustrate the
-// concept of select statement
-
+// ========================================= DEMO SELECT 1 ====================================
 // import (
 // 	"fmt"
 // 	"time"
@@ -79,14 +81,12 @@ func main() {
 
 // // function 1
 // func portal1(channel1 chan string) {
-
 // 	time.Sleep(99 * time.Second)
 // 	channel1 <- "Welcome to channel 1"
 // }
 
 // // function 2
 // func portal2(channel2 chan string) {
-
 // 	time.Sleep(1 * time.Second)
 // 	channel2 <- "Welcome to channel 2"
 // }
@@ -113,10 +113,12 @@ func main() {
 // 	case op2 := <-R2:
 // 		fmt.Println(op2)
 // 	}
-
 // }
 
 // ======================== Range and Close ======================
+// A sender can close a channel to indicate that no more values will be sent. Receivers can test whether a channel has been closed by assigning a second parameter to the receive expression: after
+// v, ok := <-ch
+// ok is false if there are no more values to receive and the channel is closed.
 
 // func fibonacci(n int, c chan int) {
 // 	x, y := 0, 1
@@ -127,7 +129,7 @@ func main() {
 // 	}
 // 	close(c)
 // }
-
+// The loop for i := range c receives values from the channel repeatedly until it is closed.
 // func main() {
 // 	c := make(chan int, 10)
 // 	go fibonacci(cap(c), c)
@@ -135,6 +137,9 @@ func main() {
 // 		fmt.Println(i)
 // 	}
 // }
+
+// Note: Only the sender should close a channel, never the receiver. Sending on a closed channel will cause a panic.
+// Another note: Channels aren't like files; you don't usually need to close them. Closing is only necessary when the receiver must be told there are no more values coming, such as to terminate a range loop.
 
 // ========================= Buffered channel ======================
 // type Investment struct {

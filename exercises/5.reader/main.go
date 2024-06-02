@@ -1,8 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io"
+)
 
 type MyReader struct {
+}
+
+func (mr MyReader) InitMyReader() io.Reader {
+	return MyReader{}
 }
 
 func (mr MyReader) Read(b []byte) (n int, e error) {

@@ -1,77 +1,77 @@
-package main
+package concurency
 
 // ========================  RANDOM Select statement ===================
 
 // Go program to illustrate the
 // concept of select statement
 
-import "fmt"
-
-// function 1
-func portal1(channel1 chan string) {
-	for i := 0; i <= 3; i++ {
-		channel1 <- "Welcome to channel 1"
-	}
-
-}
-
-// function 2
-func portal2(channel2 chan string) {
-	channel2 <- "Welcome to channel 2"
-}
-
-// main function
-func main() {
-
-	// Creating channels
-	R1 := make(chan string)
-	R2 := make(chan string)
-
-	// calling function 1 and
-	// function 2 in goroutine
-	go portal1(R1)
-	go portal2(R2)
-
-	// the choice of selection
-	// of case is random
-	select {
-	case op1 := <-R1:
-		fmt.Println(op1)
-	case op2 := <-R2:
-		fmt.Println(op2)
-	}
-}
-
-// =========================================== DEMO SELECT 2=========================================
-// The select statement lets a goroutine wait on multiple communication operations.
-// A select blocks until one of its cases can run, then it executes that case. It chooses one at random if multiple are ready.
-
 // import "fmt"
 
-// func fibonacci(c, quit chan int) {
-// 	x, y := 0, 1
-// 	for {
-// 		select {
-// 		case c <- x:
-// 			x, y = y, x+y
-// 		case <-quit:
-// 			fmt.Println("quit")
-// 			return
-// 		}
+// // function 1
+// func portal1(channel1 chan string) {
+// 	for i := 0; i <= 3; i++ {
+// 		channel1 <- "Welcome to channel 1"
+// 	}
+
+// }
+
+// // function 2
+// func portal2(channel2 chan string) {
+// 	channel2 <- "Welcome to channel 2"
+// }
+
+// // main function
+// func main() {
+
+// 	// Creating channels
+// 	R1 := make(chan string)
+// 	R2 := make(chan string)
+
+// 	// calling function 1 and
+// 	// function 2 in goroutine
+// 	go portal1(R1)
+// 	go portal2(R2)
+
+// 	// the choice of selection
+// 	// of case is random
+// 	select {
+// 	case op1 := <-R1:
+// 		fmt.Println(op1)
+// 	case op2 := <-R2:
+// 		fmt.Println(op2)
 // 	}
 // }
 
-// func main() {
-// 	c := make(chan int)
-// 	quit := make(chan int)
-// 	go func() {
-// 		for i := 0; i < 10; i++ {
-// 			fmt.Println(<-c)
-// 		}
-// 		quit <- 0
-// 	}()
-// 	fibonacci(c, quit)
-// }
+// =========================================== DEMO SELECT 2=========================================
+//The select statement lets a goroutine wait on multiple communication operations.
+//A select blocks until one of its cases can run, then it executes that case. It chooses one at random if multiple are ready.
+
+import "fmt"
+
+func fibonacci(c, quit chan int) {
+	x, y := 0, 1
+	for {
+		select {
+		case c <- x:
+			x, y = y, x+y
+		case <-quit:
+			fmt.Println("quit")
+			return
+		}
+	}
+}
+
+func TestSelect2() {
+	c := make(chan int)
+	quit := make(chan int)
+	go func() {
+		for i := 0; i < 10; i++ {
+			fmt.Println(<-c)
+		}
+		quit <- 0
+	}()
+	fibonacci(c, quit)
+}
 
 // ========================================= DEMO SELECT 1 ====================================
 // import (
@@ -129,7 +129,7 @@ func main() {
 // 	}
 // 	close(c)
 // }
-// The loop for i := range c receives values from the channel repeatedly until it is closed.
+// //The loop for i := range c receives values from the channel repeatedly until it is closed.
 // func main() {
 // 	c := make(chan int, 10)
 // 	go fibonacci(cap(c), c)

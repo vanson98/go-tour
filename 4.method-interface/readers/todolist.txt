@@ -1,0 +1,4 @@
+1. Learn English  50%
+2. Learn Golang programing language 20%
+3. Try to write some code
+4. Learn DSA using Golang
